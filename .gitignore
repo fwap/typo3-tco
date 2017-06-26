@@ -1,0 +1,7 @@
+.idea
+vendor
+.vagrant
+Vagrantfile
+typo3
+index.php
+composer.lock

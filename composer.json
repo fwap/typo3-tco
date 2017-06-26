@@ -1,0 +1,36 @@
+{
+  "name": "tildbj/typo3-tco",
+  "description": "Helpful library for the table configuration array (tca)",
+  "license": "GPL-2.0+",
+  "authors": [
+      {
+      "name": "Dennis Römmich",
+      "email": "dennis@roemmich.eu"
+    }
+  ],
+  "require": {
+    "php": "^7.0 || ^7.1",
+    "typo3/cms-core": "8.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6",
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/php-code-coverage": "^5.2",
+    "symfony/var-dumper": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "TildBJ\\Tco\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TildBJ\\Tco\\Test\\": "tests/"
+    }
+  },
+  "extra": {
+      "typo3/cms": {
+          "cms-package-dir": "{$vendor-dir}/typo3/cms"
+      }
+  }
+}
