@@ -26,6 +26,11 @@ final class Check
     private $items = [];
 
     /**
+     * @var int
+     */
+    private $cols = 1;
+
+    /**
      * @param $key
      */
     public function __construct(string $key)
@@ -44,6 +49,7 @@ final class Check
             'config' => [
                 'type' => $this->type,
                 'items' => $this->items,
+                'cols' => $this->cols,
             ],
         ];
 
@@ -61,6 +67,27 @@ final class Check
             $value = $label;
         }
         array_push($this->items, [$label, $value]);
+
+        return $this;
+    }
+
+    /**
+     * @param int $cols
+     * @return Check
+     */
+    public function setCols(int $cols): self
+    {
+        $this->cols = $cols;
+
+        return $this;
+    }
+
+    /**
+     * @return Check
+     */
+    public function floatCheckboxes(): self
+    {
+        $this->cols = 'inline';
 
         return $this;
     }

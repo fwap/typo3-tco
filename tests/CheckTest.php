@@ -56,4 +56,22 @@ final class CheckTest extends \PHPUnit\Framework\TestCase
             ->toArray();
         $this->assertSame($expected, $tca['config']['items']);
     }
+
+    /**
+     * @test
+     */
+    public function setCols()
+    {
+        $tca = (new Check('foo'))->setCols(3)->toArray();
+        $this->assertSame(3, $tca['config']['cols']);
+    }
+
+    /**
+     * @test
+     */
+    public function floatCheckboxes()
+    {
+        $tca = (new Check('foo'))->floatCheckboxes()->toArray();
+        $this->assertSame('inline', $tca['config']['cols']);
+    }
 }
