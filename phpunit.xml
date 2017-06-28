@@ -44,5 +44,8 @@
     <testsuite name="flex">
       <file>tests/FlexTest.php</file>
     </testsuite>
+    <testsuite name="passthrough">
+      <file>tests/PassthroughTest.php</file>
+    </testsuite>
   </testsuites>
 </phpunit>
