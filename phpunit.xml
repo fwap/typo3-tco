@@ -47,5 +47,8 @@
     <testsuite name="passthrough">
       <file>tests/PassthroughTest.php</file>
     </testsuite>
+    <testsuite name="user">
+      <file>tests/UserTest.php</file>
+    </testsuite>
   </testsuites>
 </phpunit>
