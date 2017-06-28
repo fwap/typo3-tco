@@ -41,5 +41,8 @@
     <testsuite name="none">
       <file>tests/NoneTest.php</file>
     </testsuite>
+    <testsuite name="flex">
+      <file>tests/FlexTest.php</file>
+    </testsuite>
   </testsuites>
 </phpunit>
