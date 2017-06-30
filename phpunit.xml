@@ -15,6 +15,14 @@
   <logging>
     <log type="coverage-clover" target="clover.xml"/>
   </logging>
+  <filter>
+        <whitelist
+                addUncoveredFilesFromWhitelist="true"
+                processUncoveredFilesFromWhitelist="true">
+
+            <directory suffix="*.php">./src/</directory>
+        </whitelist>
+    </filter>
 
   <testsuites>
     <testsuite name="input">
