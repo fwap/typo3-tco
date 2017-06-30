@@ -118,6 +118,21 @@ final class Image
     }
 
     /**
+     * @return Image
+     */
+    public function enableLink(): self
+    {
+        $items = explode(',', $this->showItems);
+        if (!in_array('link', $items)) {
+            $items[] = 'link';
+        }
+
+        $this->showItems = implode(',', $items);
+
+        return $this;
+    }
+
+    /**
      * @param string $key
      * @param string $label
      * @param int $x

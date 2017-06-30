@@ -95,4 +95,16 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
         ];
         $this->assertSame($expected, $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']);
     }
+
+    /**
+     * @test
+     */
+    public function enableLink()
+    {
+        $tco = (new Image('foobar'))->enableLink();
+        $tca = $tco->toArray();
+
+        $items = explode(',', $tca['config']['overrideChildTca']['types'][2]['showitem']);
+        $this->assertTrue(in_array('link', $items));
+    }
 }
