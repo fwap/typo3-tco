@@ -1,5 +1,6 @@
 # TYPO3 TCO
 [![Build Status](https://travis-ci.org/TildBJ/typo3-tco.svg?branch=master)](https://travis-ci.org/TildBJ/typo3-tco)
+[![codecov](https://codecov.io/gh/TildBJ/typo3-tco/branch/master/graph/badge.svg)](https://codecov.io/gh/TildBJ/typo3-tco)
 
 Helpful library for creating TCA's in TYPO3
 
