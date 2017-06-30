@@ -28,7 +28,7 @@ final class Image
     /**
      * @var string $showItems
      */
-    private $showItems = 'title, alternative';
+    private $showItems = 'title,alternative';
 
     /**
      * @var string $filePalette
@@ -79,7 +79,7 @@ final class Image
                         ],
                         'types' => [
                             2 => [
-                                'showitem' => $this->showItems . ', ' . $this->filePalette,
+                                'showitem' => $this->showItems . ',' . $this->filePalette,
                             ],
                         ],
                     ],
@@ -108,8 +108,8 @@ final class Image
     public function enableCropping(): self
     {
         $items = explode(',', $this->showItems);
-        if (!in_array('--linebreak--, crop', $items)) {
-            $items[] = '--linebreak--, crop';
+        if (!in_array('--linebreak--,crop', $items)) {
+            $items[] = '--linebreak--,crop';
         }
 
         $this->showItems = implode(',', $items);
