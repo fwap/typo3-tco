@@ -11,9 +11,9 @@ namespace TildBJ\Tco;
 final class Select
 {
     /**
-     * @var string $key
+     * @var string $label
      */
-    private $key;
+    private $label;
 
     /**
      * @var string $type
@@ -26,11 +26,11 @@ final class Select
     private $items = [];
 
     /**
-     * @param $key
+     * @param $label
      */
-    public function __construct(string $key)
+    public function __construct(string $label)
     {
-        $this->key = $key;
+        $this->label = $label;
     }
 
     /**
@@ -40,7 +40,7 @@ final class Select
     {
         $tca = [
             'exclude' => 1,
-            'label' => $this->key,
+            'label' => $this->label,
             'config' => [
                 'type' => $this->type,
                 'items' => $this->items,

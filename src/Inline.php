@@ -11,9 +11,9 @@ namespace TildBJ\Tco;
 final class Inline
 {
     /**
-     * @var string $key
+     * @var string $label
      */
-    private $key;
+    private $label;
 
     /**
      * @var string $type
@@ -43,14 +43,14 @@ final class Inline
     /**
      * Inline constructor.
      *
-     * @param string $key
+     * @param string $label
      * @param string $foreignTable
      * @param string $foreignField
      * @param string $foreignTableField
      */
-    public function __construct(string $key, string $foreignTable, string $foreignField, string $foreignTableField = null)
+    public function __construct(string $label, string $foreignTable, string $foreignField, string $foreignTableField = null)
     {
-        $this->key = $key;
+        $this->label = $label;
         $this->foreignTable = $foreignTable;
         $this->foreignField = $foreignField;
         $this->foreignTableField = $foreignTableField;
@@ -63,7 +63,7 @@ final class Inline
     {
         $tca = [
             'exclude' => 1,
-            'label' => $this->key,
+            'label' => $this->label,
             'config' => [
                 'type' => $this->type,
                 'foreign_table' => $this->foreignTable,

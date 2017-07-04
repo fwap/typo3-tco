@@ -11,9 +11,9 @@ namespace TildBJ\Tco;
 final class Image
 {
     /**
-     * @var string $key
+     * @var string $label
      */
-    private $key;
+    private $label;
 
     /**
      * @var int $maxitems
@@ -41,11 +41,11 @@ final class Image
     private $disableDefaultCropVariant = false;
 
     /**
-     * @param $key
+     * @param $label
      */
-    public function __construct(string $key)
+    public function __construct(string $label)
     {
-        $this->key = $key;
+        $this->label = $label;
     }
 
     /**
@@ -61,9 +61,9 @@ final class Image
         }
         $tca = [
             'exclude' => 1,
-            'label' => $this->key,
+            'label' => $this->label,
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                $this->key,
+                $this->label,
                 [
                     'appearance' => [
                         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'

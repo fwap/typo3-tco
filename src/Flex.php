@@ -11,9 +11,9 @@ namespace TildBJ\Tco;
 final class Flex
 {
     /**
-     * @var string $key
+     * @var string $label
      */
-    private $key;
+    private $label;
 
     /**
      * @var string $type
@@ -26,11 +26,11 @@ final class Flex
     private $defaultFlexform = '';
 
     /**
-     * @param $key
+     * @param $label
      */
-    public function __construct(string $key)
+    public function __construct(string $label)
     {
-        $this->key = $key;
+        $this->label = $label;
     }
 
     /**
@@ -51,7 +51,7 @@ final class Flex
     {
         $tca = [
             'exclude' => 1,
-            'label' => $this->key,
+            'label' => $this->label,
             'config' => [
                 'type' => $this->type,
                 'ds' => [

@@ -11,9 +11,9 @@ namespace TildBJ\Tco;
 final class Passthrough
 {
     /**
-     * @var string $key
+     * @var string $label
      */
-    private $key;
+    private $label;
 
     /**
      * @var string $type
@@ -21,11 +21,11 @@ final class Passthrough
     private $type = 'passthrough';
 
     /**
-     * @param $key
+     * @param $label
      */
-    public function __construct(string $key)
+    public function __construct(string $label)
     {
-        $this->key = $key;
+        $this->label = $label;
     }
 
     /**

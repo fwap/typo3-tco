@@ -11,9 +11,9 @@ namespace TildBJ\Tco;
 final class File
 {
     /**
-     * @var string $key
+     * @var string $label
      */
-    private $key;
+    private $label;
 
     /**
      * @var int $maxitems
@@ -21,11 +21,11 @@ final class File
     private $maxitems = null;
 
     /**
-     * @param $key
+     * @param $label
      */
-    public function __construct(string $key)
+    public function __construct(string $label)
     {
-        $this->key = $key;
+        $this->label = $label;
     }
 
     /**
@@ -35,9 +35,9 @@ final class File
     {
         $tca = [
             'exclude' => 1,
-            'label' => $this->key,
+            'label' => $this->label,
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                $this->key,
+                $this->label,
                 [
                     'foreign_types' => array(
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
