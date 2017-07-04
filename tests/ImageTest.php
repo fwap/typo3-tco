@@ -17,7 +17,7 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function labelAndGivenKeyMatches()
     {
-        $tca = (new Image('foobar'))->toArray();
+        $tca = (new Image('foobar', 'foobar'))->toArray();
         $this->assertSame('foobar', $tca['label']);
     }
 
@@ -26,7 +26,7 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function setMaxItems()
     {
-        $tca = (new Image('foobar'))->setMaxItems(7)->toArray();
+        $tca = (new Image('foobar', 'foobar'))->setMaxItems(7)->toArray();
         $this->assertSame(7, $tca['config']['maxitems']);
     }
 
@@ -35,7 +35,7 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function enableCropping()
     {
-        $tco = (new Image('foobar'))->enableCropping();
+        $tco = (new Image('foobar', 'foobar'))->enableCropping();
         $tca = $tco->toArray();
 
         $items = explode(',', $tca['config']['overrideChildTca']['types'][2]['showitem']);
@@ -47,7 +47,7 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function disableDefaultCropVariant()
     {
-        $tco = (new Image('foobar'));
+        $tco = (new Image('foobar', 'foobar'));
         $tca = $tco->toArray();
         $this->assertFalse(
             $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['default']['disabled']
@@ -65,7 +65,7 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function addCropVariant()
     {
-        $tca = (new Image('foobar'))
+        $tca = (new Image('foobar', 'foobar'))
             ->addCropVariant('foo', 'Foo', 1920, 1080)
             ->addCropVariant('bar', 'Bar', 1024, 768)
             ->toArray();
@@ -101,7 +101,7 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function enableLink()
     {
-        $tco = (new Image('foobar'))->enableLink();
+        $tco = (new Image('foobar', 'foobar'))->enableLink();
         $tca = $tco->toArray();
 
         $items = explode(',', $tca['config']['overrideChildTca']['types'][2]['showitem']);

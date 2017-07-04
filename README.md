@@ -27,7 +27,7 @@ $tcaColumn = [
     'columnName' => (new \TildBJ\Tco\Input('LLL:ext:my_ext/Resources/Private/Language/locallang_db.xlf:columnName'))
         ->setRequired(false)
         ->toArray(),
-    'columnName2 => (new \TildBJ\Tco\Image('LLL:ext:my_ext/Resources/Private/Language/locallang_db.xlf:columnName2'))
+    'columnName2 => (new \TildBJ\Tco\Image('LLL:ext:my_ext/Resources/Private/Language/locallang_db.xlf:columnName2', 'columnName2'))
         ->enableLink()
         ->setMaxItems(1)
         ->toArray(),

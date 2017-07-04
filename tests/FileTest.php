@@ -12,7 +12,7 @@ final class FileTest extends \PHPUnit\Framework\TestCase
      */
     public function labelAndGivenKeyMatches()
     {
-        $tca = (new File('foobar'))->toArray();
+        $tca = (new File('foobar', 'foobar'))->toArray();
         $this->assertSame('foobar', $tca['label']);
     }
 
@@ -21,7 +21,7 @@ final class FileTest extends \PHPUnit\Framework\TestCase
      */
     public function setMaxItems()
     {
-        $tca = (new File('foobar'))->setMaxItems(7)->toArray();
+        $tca = (new File('foobar', 'foobar'))->setMaxItems(7)->toArray();
         $this->assertSame(7, $tca['config']['maxitems']);
     }
 }

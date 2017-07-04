@@ -16,6 +16,11 @@ final class Image
     private $label;
 
     /**
+     * @var string $fieldName
+     */
+    private $fieldName;
+
+    /**
      * @var int $maxitems
      */
     private $maxitems = null;
@@ -41,11 +46,13 @@ final class Image
     private $disableDefaultCropVariant = false;
 
     /**
-     * @param $label
+     * @param string $label
+     * @param string $fieldName
      */
-    public function __construct(string $label)
+    public function __construct(string $label, string $fieldName)
     {
         $this->label = $label;
+        $this->fieldName = $fieldName;
     }
 
     /**
@@ -63,7 +70,7 @@ final class Image
             'exclude' => 1,
             'label' => $this->label,
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                $this->label,
+                $this->fieldName,
                 [
                     'appearance' => [
                         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'

@@ -16,14 +16,20 @@ final class File
     private $label;
 
     /**
+     * @var string $fieldName
+     */
+    private $fieldName;
+
+    /**
      * @var int $maxitems
      */
     private $maxitems = null;
 
     /**
-     * @param $label
+     * @param string $label
+     * @param string $fieldName
      */
-    public function __construct(string $label)
+    public function __construct(string $label, string $fieldName)
     {
         $this->label = $label;
     }
@@ -37,7 +43,7 @@ final class File
             'exclude' => 1,
             'label' => $this->label,
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                $this->label,
+                $this->fieldName,
                 [
                     'foreign_types' => array(
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
