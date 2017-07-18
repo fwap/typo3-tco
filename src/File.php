@@ -10,6 +10,8 @@ namespace TildBJ\Tco;
  */
 final class File
 {
+    use Common\CanBeExcluded;
+
     /**
      * @var string $label
      */
@@ -40,7 +42,7 @@ final class File
     public function toArray(): array
     {
         $tca = [
-            'exclude' => 1,
+            'exclude' => $this->exclude,
             'label' => $this->label,
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 $this->fieldName,

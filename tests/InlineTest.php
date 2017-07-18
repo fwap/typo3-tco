@@ -44,4 +44,18 @@ final class InlineTest extends \PHPUnit\Framework\TestCase
         $tca = (new Inline('foo', 'bar', 'foofoo', 'barbar'))->setMaxItems(7)->toArray();
         $this->assertSame(7, $tca['config']['maxitems']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Inline('foo', 'bar', 'foofoo', 'barbar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

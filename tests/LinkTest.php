@@ -70,4 +70,18 @@ final class LinkTest extends \PHPUnit\Framework\TestCase
         $tca = $tco->toArray();
         return explode(',', $tca['config']['fieldControl']['linkPopup']['options']['blindLinkOptions']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Link('foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

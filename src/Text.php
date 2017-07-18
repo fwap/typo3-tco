@@ -10,6 +10,8 @@ namespace TildBJ\Tco;
  */
 final class Text
 {
+    use Common\CanBeExcluded;
+
     /**
      * @var string $label
      */
@@ -59,7 +61,7 @@ final class Text
     public function toArray(): array
     {
         $tca = [
-            'exclude' => 1,
+            'exclude' => $this->exclude,
             'label' => $this->label,
             'config' => [
                 'type' => $this->type,

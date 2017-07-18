@@ -83,4 +83,18 @@ final class TextTest extends \PHPUnit\Framework\TestCase
             [$tca['config']['cols'], $tca['config']['rows']]
         );
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Text('foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

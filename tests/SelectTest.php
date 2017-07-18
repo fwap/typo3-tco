@@ -63,4 +63,18 @@ final class SelectTest extends \PHPUnit\Framework\TestCase
             ->toArray();
         $this->assertSame($expected, $tca['config']['items']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Select('foo'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

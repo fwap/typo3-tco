@@ -33,4 +33,18 @@ final class FlexTest extends \PHPUnit\Framework\TestCase
         $tca = (new Flex('foobar'))->setDefaultFlexform('foobar')->toArray();
         $this->assertSame('foobar', $tca['config']['ds']['default']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Flex('foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

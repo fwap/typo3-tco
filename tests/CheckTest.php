@@ -74,4 +74,18 @@ final class CheckTest extends \PHPUnit\Framework\TestCase
         $tca = (new Check('foo'))->floatCheckboxes()->toArray();
         $this->assertSame('inline', $tca['config']['cols']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Check('foo'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

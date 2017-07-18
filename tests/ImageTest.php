@@ -107,4 +107,18 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
         $items = explode(',', $tca['config']['overrideChildTca']['types'][2]['showitem']);
         $this->assertTrue(in_array('link', $items));
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Image('foobar', 'foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

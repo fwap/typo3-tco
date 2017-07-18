@@ -42,4 +42,18 @@ final class InputTest extends \PHPUnit\Framework\TestCase
         $eval = explode(',', $tca['config']['eval']);
         $this->assertFalse(in_array('required', $eval));
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new Input('foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

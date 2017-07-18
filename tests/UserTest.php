@@ -46,4 +46,18 @@ final class UserTest extends \PHPUnit\Framework\TestCase
         $tca = (new User('foobar'))->setUserFunc('foobar')->toArray();
         $this->assertSame('foobar', $tca['config']['userFunc']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new User('foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

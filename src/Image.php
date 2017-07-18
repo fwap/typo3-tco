@@ -10,6 +10,8 @@ namespace TildBJ\Tco;
  */
 final class Image
 {
+    use Common\CanBeExcluded;
+
     /**
      * @var string $label
      */
@@ -67,7 +69,7 @@ final class Image
             $cropVariants[$key] = $cropVariant;
         }
         $tca = [
-            'exclude' => 1,
+            'exclude' => $this->exclude,
             'label' => $this->label,
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 $this->fieldName,

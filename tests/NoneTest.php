@@ -24,4 +24,18 @@ final class NoneTest extends \PHPUnit\Framework\TestCase
         $tca = (new None('foobar'))->toArray();
         $this->assertSame('foobar', $tca['label']);
     }
+
+    /**
+     * @test
+     */
+    public function excludeCanBeDisabled()
+    {
+        $tco = (new None('foobar'))->exclude(false);
+        $tca = $tco->toArray();
+        $this->assertSame(0, $tca['exclude']);
+
+        $tco->exclude();
+        $tca = $tco->toArray();
+        $this->assertSame(1, $tca['exclude']);
+    }
 }

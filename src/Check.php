@@ -10,6 +10,8 @@ namespace TildBJ\Tco;
  */
 final class Check
 {
+    use Common\CanBeExcluded;
+
     /**
      * @var string $label
      */
@@ -44,7 +46,7 @@ final class Check
     public function toArray(): array
     {
         $tca = [
-            'exclude' => 1,
+            'exclude' => $this->exclude,
             'label' => $this->label,
             'config' => [
                 'type' => $this->type,

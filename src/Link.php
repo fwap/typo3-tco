@@ -10,6 +10,8 @@ namespace TildBJ\Tco;
  */
 final class Link
 {
+    use Common\CanBeExcluded;
+
     /**
      * @var string $label
      */
@@ -39,7 +41,7 @@ final class Link
     public function toArray(): array
     {
         $tca = [
-            'exclude' => 1,
+            'exclude' => $this->exclude,
             'label' => $this->label,
             'config' => [
                 'type' => $this->type,
