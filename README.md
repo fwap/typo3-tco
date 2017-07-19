@@ -11,7 +11,7 @@ Helpful library for creating TCA's in TYPO3
 The recommended way to install tco is by using composer.
 Get tco by running
 ```sh
-composer require tildbj/typo3-tco 0.1
+composer require tildbj/typo3-tco
 ```
 
 ### via Extensionmanager:
