@@ -62,13 +62,27 @@ final class LinkTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @param Link $tco
-     * @return array
+     * @test
      */
-    protected function getBlindLinkOptions(Link $tco): array
+    public function enableAndDisableLinkFields()
     {
-        $tca = $tco->toArray();
-        return explode(',', $tca['config']['fieldControl']['linkPopup']['options']['blindLinkOptions']);
+        $tco = (new Link('foobar'));
+        $this->assertTrue(in_array('class', $this->getBlindLinkFields($tco)));
+        $this->assertTrue(in_array('params', $this->getBlindLinkFields($tco)));
+        $this->assertTrue(in_array('target', $this->getBlindLinkFields($tco)));
+        $this->assertTrue(in_array('title', $this->getBlindLinkFields($tco)));
+
+        $tco->enableClass();
+        $this->assertFalse(in_array('class', $this->getBlindLinkOptions($tco)));
+
+        $tco->enableParams();
+        $this->assertFalse(in_array('params', $this->getBlindLinkOptions($tco)));
+
+        $tco->enableTarget();
+        $this->assertFalse(in_array('target', $this->getBlindLinkOptions($tco)));
+
+        $tco->enableTitle();
+        $this->assertFalse(in_array('title', $this->getBlindLinkOptions($tco)));
     }
 
     /**
@@ -83,5 +97,25 @@ final class LinkTest extends \PHPUnit\Framework\TestCase
         $tco->exclude();
         $tca = $tco->toArray();
         $this->assertSame(1, $tca['exclude']);
+    }
+
+    /**
+     * @param Link $tco
+     * @return array
+     */
+    protected function getBlindLinkOptions(Link $tco): array
+    {
+        $tca = $tco->toArray();
+        return explode(',', $tca['config']['fieldControl']['linkPopup']['options']['blindLinkOptions']);
+    }
+
+    /**
+     * @param Link $tco
+     * @return array
+     */
+    protected function getBlindLinkFields(Link $tco): array
+    {
+        $tca = $tco->toArray();
+        return explode(',', $tca['config']['fieldControl']['linkPopup']['options']['blindLinkFields']);
     }
 }

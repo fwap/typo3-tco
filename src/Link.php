@@ -28,6 +28,11 @@ final class Link
     private $blindLinkOptions = 'url,mail,file,folder';
 
     /**
+     * @var string $blindLinkFields
+     */
+    private $blindLinkFields = 'class,params,target,title';
+
+    /**
      * @param $label
      */
     public function __construct(string $label)
@@ -50,7 +55,7 @@ final class Link
                         'options' => [
                             'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.link',
                             'blindLinkOptions' => $this->blindLinkOptions,
-                            'blindLinkFields' => 'class, params, file, title'
+                            'blindLinkFields' => $this->blindLinkFields,
                         ]
                     ]
                 ],
@@ -69,7 +74,7 @@ final class Link
      */
     public function enableUrl(): self
     {
-        $this->enable('url');
+        $this->enableLinkOption('url');
 
         return $this;
     }
@@ -79,7 +84,7 @@ final class Link
      */
     public function enableMail(): self
     {
-        $this->enable('mail');
+        $this->enableLinkOption('mail');
 
         return $this;
     }
@@ -89,7 +94,7 @@ final class Link
      */
     public function enableFile(): self
     {
-        $this->enable('file');
+        $this->enableLinkOption('file');
 
         return $this;
     }
@@ -99,7 +104,47 @@ final class Link
      */
     public function enableFolder(): self
     {
-        $this->enable('folder');
+        $this->enableLinkOption('folder');
+
+        return $this;
+    }
+
+    /**
+     * @return Link
+     */
+    public function enableClass(): self
+    {
+        $this->enableLinkField('class');
+
+        return $this;
+    }
+
+    /**
+     * @return Link
+     */
+    public function enableParams(): self
+    {
+        $this->enableLinkField('class');
+
+        return $this;
+    }
+
+    /**
+     * @return Link
+     */
+    public function enableTarget(): self
+    {
+        $this->enableLinkField('target');
+
+        return $this;
+    }
+
+    /**
+     * @return Link
+     */
+    public function enableTitle(): self
+    {
+        $this->enableLinkField('title');
 
         return $this;
     }
@@ -107,7 +152,7 @@ final class Link
     /**
      * @param $option
      */
-    protected function enable(string $option)
+    protected function enableLinkOption(string $option)
     {
         $blindLinkOptions = explode(',', $this->blindLinkOptions);
 
@@ -118,6 +163,22 @@ final class Link
         }
 
         $this->blindLinkOptions = implode(',', $blindLinkOptions);
+    }
+
+    /**
+     * @param $option
+     */
+    protected function enableLinkField(string $option)
+    {
+        $blindLinkFields = explode(',', $this->blindLinkFields);
+
+        foreach ($blindLinkFields as $key => $value) {
+            if (trim($value) === $option) {
+                unset($blindLinkFields[$key]);
+            }
+        }
+
+        $this->blindLinkFields = implode(',', $blindLinkFields);
     }
 
     /**
