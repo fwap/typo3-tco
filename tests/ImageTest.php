@@ -17,8 +17,9 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function labelAndGivenKeyMatches()
     {
-        $tca = (new Image('foobar', 'foobar'))->toArray();
-        $this->assertSame('foobar', $tca['label']);
+        $tca = (new Image('foo', 'bar'))->toArray();
+        $this->assertSame('foo', $tca['label']);
+        $this->assertSame('bar', $tca['config']['foreign_match_fields']['fieldname']);
     }
 
     /**

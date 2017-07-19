@@ -34,6 +34,7 @@ final class File
     public function __construct(string $label, string $fieldName)
     {
         $this->label = $label;
+        $this->fieldName = $fieldName;
     }
 
     /**

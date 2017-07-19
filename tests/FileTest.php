@@ -12,8 +12,9 @@ final class FileTest extends \PHPUnit\Framework\TestCase
      */
     public function labelAndGivenKeyMatches()
     {
-        $tca = (new File('foobar', 'foobar'))->toArray();
-        $this->assertSame('foobar', $tca['label']);
+        $tca = (new File('foo', 'bar'))->toArray();
+        $this->assertSame('foo', $tca['label']);
+        $this->assertSame('bar', $tca['config']['foreign_match_fields']['fieldname']);
     }
 
     /**
