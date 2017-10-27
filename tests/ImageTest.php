@@ -122,4 +122,23 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
         $tca = $tco->toArray();
         $this->assertSame(1, $tca['exclude']);
     }
+
+    /**
+     * @test
+     */
+    public function cropVariantsMustNotBeEmptyWhenCroppingIsEnabled()
+    {
+        $tco = (new Image('foobar', 'foobar'))
+            ->enableCropping();
+        $tca = $tco->toArray();
+        $emptyCropVariant = [
+            'default' =>[
+                'disabled' => false
+            ],
+        ];
+        $this->assertNotSame(
+            $emptyCropVariant,
+            $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']
+        );
+    }
 }
