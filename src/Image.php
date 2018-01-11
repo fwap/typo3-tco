@@ -28,6 +28,11 @@ final class Image
     private $maxitems = null;
 
     /**
+     * @var int $minitems
+     */
+    private $minitems = null;
+
+    /**
      * @var array $cropVariants
      */
     private $cropVariants = [];
@@ -77,6 +82,7 @@ final class Image
                     'appearance' => [
                         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
                     ],
+                    'minitems' => $this->minitems,
                     'maxitems' => $this->maxitems,
                     'overrideChildTca' => [
                         'columns' => [
@@ -107,6 +113,17 @@ final class Image
     public function setMaxItems(int $max): self
     {
         $this->maxitems = $max;
+
+        return $this;
+    }
+
+    /**
+     * @param int $min
+     * @return Image
+     */
+    public function setMinItems(int $min): self
+    {
+        $this->minitems = $min;
 
         return $this;
     }

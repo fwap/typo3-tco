@@ -34,6 +34,15 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
+    public function setMinItems()
+    {
+        $tca = (new Image('foobar', 'foobar'))->setMinItems(1)->toArray();
+        $this->assertSame(1, $tca['config']['minitems']);
+    }
+
+    /**
+     * @test
+     */
     public function enableCropping()
     {
         $tco = (new Image('foobar', 'foobar'))->enableCropping();
