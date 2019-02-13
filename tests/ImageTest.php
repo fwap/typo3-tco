@@ -55,24 +55,6 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function disableDefaultCropVariant()
-    {
-        $tco = (new Image('foobar', 'foobar'));
-        $tca = $tco->toArray();
-        $this->assertFalse(
-            $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['default']['disabled']
-        );
-
-        $tco->disableDefaultCropVariant();
-        $tca = $tco->toArray();
-        $this->assertTrue(
-            $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['default']['disabled']
-        );
-    }
-
-    /**
-     * @test
-     */
     public function addCropVariant()
     {
         $tca = (new Image('foobar', 'foobar'))
@@ -80,30 +62,51 @@ final class ImageTest extends \PHPUnit\Framework\TestCase
             ->addCropVariant('bar', 'Bar', 1024, 768)
             ->toArray();
 
-        $expected = [
-            'default' => [
-                'disabled' => false,
-            ],
-            'foo' => [
-                'title' => 'Foo',
-                'allowedAspectRatios' => [
-                    '1920:1080' => [
-                        'title' => '1920 x 1080',
-                        'value' => 1920 / 1080
-                    ],
-                ],
-            ],
-            'bar' => [
-                'title' => 'Bar',
-                'allowedAspectRatios' => [
-                    '1024:768' => [
-                        'title' => '1024 x 768',
-                        'value' => 1024 / 768
-                    ],
+        $foo = [
+            'title' => 'Foo',
+            'allowedAspectRatios' => [
+                '1920:1080' => [
+                    'title' => '1920 x 1080',
+                    'value' => 1920 / 1080
                 ],
             ],
         ];
-        $this->assertSame($expected, $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']);
+        $bar = [
+            'title' => 'Bar',
+            'allowedAspectRatios' => [
+                '1024:768' => [
+                    'title' => '1024 x 768',
+                    'value' => 1024 / 768
+                ],
+            ],
+        ];
+        $this->assertSame($foo, $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['foo']);
+        $this->assertSame($bar, $tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['bar']);
+    }
+
+    /**
+     * @test
+     */
+    public function addCropVariantShouldDisableDefaultCropVariant()
+    {
+        $tca = (new Image('foobar', 'foobar'))
+            ->addCropVariant('foo', 'Foo', 1920, 1080)
+            ->toArray();
+
+        $this->assertTrue($tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['default']['disabled']);
+    }
+
+    /**
+     * @test
+     */
+    public function enableCroppingShouldAddDefaultCropVariantWhenUserDoesNotAddCropVariant()
+    {
+        $tca = (new Image('foobar', 'foobar'))
+            ->enableCropping()
+            ->toArray();
+
+        $this->assertTrue(is_array($tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['default']['allowedAspectRatios']));
+        $this->assertFalse($tca['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['default']['disabled']);
     }
 
     /**

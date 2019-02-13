@@ -67,12 +67,13 @@ final class Image
      */
     public function toArray(): array
     {
-        $cropVariants['default'] = [
-            'disabled' => $this->disableDefaultCropVariant
-        ];
+        if (empty($this->cropVariants)) {
+            $this->addDefaultCropVariant();
+        }
         foreach ($this->cropVariants as $key => $cropVariant) {
             $cropVariants[$key] = $cropVariant;
         }
+        $cropVariants['default']['disabled'] = $this->disableDefaultCropVariant;
         $tca = [
             'exclude' => $this->exclude,
             'label' => $this->label,
@@ -167,6 +168,10 @@ final class Image
      */
     public function addCropVariant(string $key, string $label, int $x, int $y): self
     {
+        if ($key !== 'default') {
+            $this->disableDefaultCropVariant();
+        }
+
         $this->cropVariants[$key] = [
             'title' => $label,
             'allowedAspectRatios' => [
@@ -182,11 +187,21 @@ final class Image
 
     /**
      * @return Image
+     * @deprecated Will be private in future releases
      */
     public function disableDefaultCropVariant(): self
     {
         $this->disableDefaultCropVariant = true;
 
         return $this;
+    }
+
+    /**
+     * @return void
+     */
+    private function addDefaultCropVariant()
+    {
+        $this->addCropVariant('default', 'Default', 0, 1);
+        $this->disableDefaultCropVariant = false;
     }
 }
