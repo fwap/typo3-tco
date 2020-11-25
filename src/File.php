@@ -28,6 +28,11 @@ final class File
     private $maxitems = null;
 
     /**
+     * @var string $allowedFileTypes
+     */
+    private $allowedFileTypes = 'pdf';
+
+    /**
      * @param string $label
      * @param string $fieldName
      */
@@ -65,7 +70,7 @@ final class File
                         ]
                     ],
                 ],
-                'pdf'
+                $this->allowedFileTypes
             )
         ];
 
@@ -79,6 +84,17 @@ final class File
     public function setMaxItems(int $max) : self
     {
         $this->maxitems = $max;
+
+        return $this;
+    }
+
+    /**
+     * @param string $allowedFileTypes
+     * @return $this
+     */
+    public function setAllowedFileTypes(string $allowedFileTypes) : self
+    {
+        $this->allowedFileTypes = $allowedFileTypes;
 
         return $this;
     }
